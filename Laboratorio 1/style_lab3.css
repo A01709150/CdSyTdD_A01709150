@@ -18,6 +18,25 @@ header{
     line-height: 100px;
 }
 
+nav{
+    background: lightblue;
+}
 
+.clearfix{
+    clear:both;
+}
+
+#content{
+    float: left;
+    width: 80%;
+    min-height: 400px;
+    background:lightblue;
+}
+
+aside{
+    float: left;
+    width: 20%;
+    background: orange;
+}
 
 
