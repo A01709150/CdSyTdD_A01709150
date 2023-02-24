@@ -34,10 +34,19 @@ function promText(arreglo){
 var arreglo = [1, 2, 3];
 promText(arreglo);
 
+//aplicación web que al enviar una petición al servidor, devuelva una de las páginas que creaste anteriormente en tus laboratorios.
 
+const http = require('http');
 
+const server = http.createServer( (request, response) => {    
+    console.log(request.url);
+    response.setHeader('Content-Type', 'text/html');
+    response.write("<h1>Chilaquiles</h1>");
+    response.write("Hola desde node!");
+    response.end();
+});
 
-
+server.listen(3015);
 
 
 
