@@ -28,6 +28,7 @@ const soccerRutas = require('./routes/soccer.routes');
 
 app.use('/soccer', soccerRutas);
 
+
 app.use((request, response, next) => {
     console.log("Tercer middleware");
 

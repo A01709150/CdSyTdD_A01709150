@@ -18,6 +18,8 @@ router.post('/nuevo', (request, response, next) => {
     console.log(request.body);
     console.log(request.body.jugador);
     response.send("El jugador de soccer se llama: " + request.body.jugador);
+    const filesystem = require('fs');
+    filesystem.writeFileSync('Juegos.txt', request.body.jugador) 
 });
 
 
