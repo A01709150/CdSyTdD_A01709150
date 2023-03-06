@@ -8,10 +8,6 @@ router.get('/nuevo', (request, response, next) => {
         <form action="/soccer/nuevo" method="POST">
         <label for="jugador">Nombre del jugador de soccer:</label>
         <input type="text" id="jugador" name="jugador">
-        <br>
-        <label for="numero">Numero del jugador de soccer:</label>
-        <input type="text" id="numero" name="numero">
-        <br>
         <input type="submit" value="Enviar"> 
         </form>
     `;
@@ -25,9 +21,23 @@ router.post('/nuevo', (request, response, next) => {
 });
 
 
-router.post('/nuevo', (request, response, next) => {
+router.get('/nuevo2', (request, response, next) => {
+    
+    let html = `
+        <form action="/soccer/nuevo2" method="POST">
+        <label for="numero">Numero del jugador de soccer:</label>
+        <input type="text" id="numero" name="numero">
+        <input type="submit" value="Enviar"> 
+        </form>
+    `;
+    response.send(html);
+});
+
+router.post('/nuevo2', (request, response, next) => {
     console.log(request.body);
     console.log(request.body.numero);
+    response.send("El numero del jugador es: " + request.body.numero);
 });
+
 
 module.exports = router;
