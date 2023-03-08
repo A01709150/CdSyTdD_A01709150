@@ -2,6 +2,10 @@
 
 <h1 class="title">Video Juegos</h1>
 
+<a href="/juegos/nuevo" class="button is-rounded is-danger">Registra video juego</a>
+
+<br><br>
+
 <% if (juegos.length > 0) { %>
     <div class="columns">
         <% let columns = 0; %>
@@ -45,5 +49,7 @@
 <% } else { %>
     <h1>No hay juegos registradas</h1>
 <% } %>   
+
++<a href="/juegos/nuevo" class="button is-rounded is-danger">Registrar juego</a>
 
 <%- include('./includes/foot.ejs') %>

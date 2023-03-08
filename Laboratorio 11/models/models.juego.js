@@ -34,11 +34,11 @@ const juegos = [
 module.exports = class Juego {
 
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(nuevo_perro) {
+    constructor(nuevo_juego) {
         this.juego = nuevo_juego.juego || 'JUEGO';
         this.imagen = nuevo_juego.imagen || 'https://bulma.io/images/placeholders/1280x960.png';
-        this.descripcion = nuevo_juego.descripcion || '@perro';
-        this.precio = nuevo_juego.precio || 'Un perro muy cool';
+        this.descripcion = nuevo_juego.descripcion || '';
+        this.precio = nuevo_juego.precio || '';
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
