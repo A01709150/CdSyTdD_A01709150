@@ -1,3 +1,5 @@
+const db = require('../util/database');
+
 const juegos = [
     { 
         juego: "Zelda Breath of the Wild", 
@@ -48,6 +50,13 @@ module.exports = class Juego {
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     static fetchAll() {
+        db.execute('SELECT * FROM JUEGOS')
+        .then(([rows, fieldData]) => {
+            console.log(rows);
+        })
+        .catch(err => {
+            console.log(err);
+        });
         return juegos;
     }
 

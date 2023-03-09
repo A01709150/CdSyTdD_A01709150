@@ -14,11 +14,37 @@ exports.post_nuevo = (request, response, next) => {
 
     juego.save();
 
+    request.session.ultimo_juego= juego.juego;
+
     response.redirect('/juegos/');
 };
 
 
-
 exports.listar = (request, response, next) => {
-       response.render('lista', {juegos: Juego.fetchAll()});
+
+    //Crear variable para que si no hay cookie se cuente con un string para hacer el split
+    let cookies = request.get('Cookie') || '';
+    
+    //let consultas = cookies.split(';')[0].split('=')[1] || 0;
+    
+   // consultas++;
+    
+    //response.setHeader('Set-Cookie', 'consultas=' + consultas + '; HttpOnly');
+
+    response.render('lista', { 
+        juegos: Juego.fetchAll(),
+        ultimo_juego: request.session.ultimo_juego || '', 
+});
+    Juego.fetchAll()
+    .then(([rows, fieldData])=> {
+        console.log(rows);
+
+        response.render('lista', {
+            juegos:rows,
+            ultumo_juego: requestIdleCallback.session.ultimo_juego || '',
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    })
 };
