@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 13, 2023 at 05:05 PM
+-- Generation Time: Mar 14, 2023 at 04:55 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -22,19 +22,24 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-USE Juegos; 
+
 --
 -- Table structure for table `Juegos`
 --
 
 CREATE TABLE `Juegos` (
-  `id_juego` int(11)  NOT NULL AUTO_INCREMENT,
+  `id_juego` int(11) NOT NULL,
   `juego` varchar(100) NOT NULL,
   `imagen` varchar(500) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
   `precio` float(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
+--
+-- Dumping data for table `Juegos`
+--
+
+I
 --
 -- Indexes for dumped tables
 --
@@ -44,6 +49,16 @@ CREATE TABLE `Juegos` (
 --
 ALTER TABLE `Juegos`
   ADD PRIMARY KEY (`id_juego`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Juegos`
+--
+ALTER TABLE `Juegos`
+  MODIFY `id_juego` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
