@@ -22,16 +22,16 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+USE Juegos; 
 --
 -- Table structure for table `Juegos`
 --
 
 CREATE TABLE `Juegos` (
-  `id_juego` int(11) NOT NULL,
+  `id_juego` int(11)  NOT NULL AUTO_INCREMENT,
   `juego` varchar(100) NOT NULL,
   `imagen` varchar(500) NOT NULL,
-  `descripción` varchar(500) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
   `precio` float(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 

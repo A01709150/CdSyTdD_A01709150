@@ -50,12 +50,12 @@
     <h1>No hay juegos registradas</h1>
 <% } %>   
 
-+<% if (ultimo_juego != '') { %>
-    +    <div class="notification is-link is-light">
-    +        Último juego agregado: <%= ultimo_juego %>
-    +    </div>
-    +<% } %>
+<% if (ultimo_juego != '') { %>
+        <div class="notification is-link is-light">
+            Último juego agregado: <%= ultimo_juego %>
+        </div>
+<% } %>
 
-+<a href="/juegos/nuevo" class="button is-rounded is-danger">Registrar juego</a>
+<a href="/juegos/nuevo" class="button is-rounded is-danger">Registrar juego</a>
 
 <%- include('./includes/foot.ejs') %>

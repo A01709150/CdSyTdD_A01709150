@@ -1,5 +1,5 @@
 const db = require('../util/database');
-
+/*
 const juegos = [
     { 
         juego: "Zelda Breath of the Wild", 
@@ -32,7 +32,7 @@ const juegos = [
         precio: "60 dolares / 1,200 pesos mexicanos"
     } 
 ];
-
+*/
 module.exports = class Juego {
 
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
@@ -45,19 +45,18 @@ module.exports = class Juego {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        juegos.push(this);
+        return db.execute(`
+          INSERT INTO juegos (juego, imagen, descripcion, precio) 
+            values (?, ?, ?, ?)
+        `, [this.juego, this.imagen, this.descripcion, this.precio]);
     }
-
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     static fetchAll() {
-        db.execute('SELECT * FROM JUEGOS')
-        .then(([rows, fieldData]) => {
-            console.log(rows);
-        })
-        .catch(err => {
-            console.log(err);
-        });
-        return juegos;
+        return db.execute(
+          `SELECT j.juego, j.imagen, j.descripcion, j.precio 
+            FROM juegos j
+           `
+        );
     }
 
 }
