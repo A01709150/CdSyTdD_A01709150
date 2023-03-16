@@ -2,9 +2,17 @@
 
 <h1 class="title">Video Juegos</h1>
 
-<a href="/juegos/nuevo" class="button is-rounded is-danger">Registra video juego</a>
+<% if (privilegios.indexOf('crear_juegos') >= 0) { %>
+    <a href="/juegos/nuevo" class="button is-danger is-rounded">Registrar juego</a>
+<% } %>
 
 <br><br>
+
+<% if (mensaje != '') { %>
+    <div class="notification is-info is-light">
+        <%= mensaje %>
+    </div>
+<% } %>
 
 <% if (juegos.length > 0) { %>
     <div class="columns">
@@ -38,9 +46,7 @@
                             <%= juego.descripcion %> 
                             <br>
                             <br>
-                            <%= juego.precio %>
-                            
-
+                            <%= juego.precio %>                           
                         </div>
                     </div>
                 </div>
@@ -57,6 +63,5 @@
         </div>
 <% } %>
 
-<a href="/juegos/nuevo" class="button is-rounded is-danger">Registrar juego</a>
 
 <%- include('./includes/foot.ejs') %>

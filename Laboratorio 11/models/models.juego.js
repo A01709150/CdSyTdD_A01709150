@@ -35,7 +35,6 @@ const juegos = [
 */
 module.exports = class Juego {
 
-    //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
     constructor(nuevo_juego) {
         this.juego = nuevo_juego.juego || 'JUEGO';
         this.imagen = nuevo_juego.imagen || 'https://bulma.io/images/placeholders/1280x960.png';
@@ -43,14 +42,13 @@ module.exports = class Juego {
         this.precio = nuevo_juego.precio || '';
     }
 
-    //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
         return db.execute(`
           INSERT INTO juegos (juego, imagen, descripcion, precio) 
             values (?, ?, ?, ?)
         `, [this.juego, this.imagen, this.descripcion, this.precio]);
     }
-    //Este método servirá para devolver los objetos del almacenamiento persistente.
+    
     static fetchAll() {
         return db.execute(
           `SELECT j.juego, j.imagen, j.descripcion, j.precio 
@@ -59,4 +57,19 @@ module.exports = class Juego {
         );
     }
 
+    static fetchOne(id) {
+        return db.execute(
+            `SELECT j.id_juego, j.juego, j.imagen, j.descripcion, j.precio
+            FROM juegos j
+            `, [id]
+        );
+    }
+
+    static fetch(id) {
+        if (id) {
+            return Juego.fetchOne(id);
+        } else {
+            return Juego.fetchAll();
+        }
+    }
 }

@@ -12,11 +12,16 @@ exports.post_nuevo = (request, response, next) => {
         precio: request.body.precio,
     });
 
-    juego.save();
+    juego.save()
+     .then(([rows, fieldData]) => {
 
-    request.session.ultimo_juego= juego.juego;
+        request.session.mensaje = "El juego fue registrado exitosamente.";
 
-    response.redirect('/juegos/');
+        request.session.ultimo_juego = juego.juego;
+
+        response.redirect('/juegos/');
+    })
+    .catch((error) => {console.log(error)});
 };
 
 
@@ -31,12 +36,24 @@ exports.listar = (request, response, next) => {
     
     response.setHeader('Set-Cookie', 'consultas=' + consultas + '; HttpOnly');
 
-    Juego.fetchAll().then(([rows, fieldData])=> {
+    let mensaje = '';
+
+    if (request.session.mensaje) {
+        mensaje = request.session.mensaje;
+        request.session.mensaje = '';
+    }
+
+    Juego.fetch(request.params.id)
+    .then(([rows, fieldData])=> {
         console.log(rows);
 
         response.render('lista', {
             juegos:rows,
             ultimo_juego: request.session.ultimo_juego || '',
+            mensaje: mensaje,
+            isLoggedIn: request.session.isLoggedIn || false,
+            nombre: request.session.nombre || '',
+            privilegios: request.session.privilegios || [],
         });
     })
     .catch(err => {
