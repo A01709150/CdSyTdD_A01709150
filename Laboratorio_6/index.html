@@ -1,0 +1,88 @@
+<!--Validador de contraseñas-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar contraseña</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<form onsubmit="return validateForm()">
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password">
+
+		<label for="confirm-password">Validar Password:</label>
+		<input type="password" id="confirm-password" name="confirm-password">
+
+		<input type="submit" value="Validar">
+
+		<div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+	</form>
+    <script>
+        function validateForm(){
+		var passwordInput = document.getElementById('password');
+		var confirmPasswordInput = document.getElementById('confirm-password');
+		var form = document.getElementsByTagName('form')[0];
+		var errorMessage = document.getElementById('error-message');
+        var successMessage = document.getElementById('success-message');
+
+		
+
+			event.preventDefault();
+
+			var password = passwordInput.value;
+			var confirmPassword = confirmPasswordInput.value;
+
+			if (password === '' || confirmPassword === '') {
+				errorMessage.textContent = 'Debes completar ambos campos.';
+				return;
+			}
+
+			if (password !== confirmPassword) {
+				errorMessage.textContent = 'Los passwords no coinciden.';
+				return;
+			}
+
+			if (password.length < 8) {
+                errorMessage.textContent = "El password debe tener por lo menos 8 caracteres";
+                return;
+            }
+
+            var hasNumber = /\d/.test(password);
+		    var hasLetter = /[a-zA-Z]/.test(password);
+
+		    if (!hasNumber || !hasLetter) {
+			    errorMessage.textContent = 'El password debe contener al menos un número y una letra.';
+			    return;
+		    }
+
+            else {
+		        successMessage.textContent = 'El password es válido.';
+                return;
+            }
+	    }
+             
+    </script>
+    <br> <br>
+    <h2>Preguntas del Laboratorio 6:</h2> 
+    <h3>¿Por qué es una buena práctica usar JavaScript para checar que sean válidos 
+        los inputs de las formas antes de enviar los datos al servidor?</h3> 
+    <p> Es importartante hacer esto para que no haiga problema a la hora de enviar los datos al servido. <br>
+    De esta manera el usuario se puede corregir si es que hubo una equivocación, como por ejemplo si ingreso <br>
+    su contraseña mal.</p>
+    <h3>2) ¿Cómo puedes saltarte la seguridad de validaciones hechas con JavaScript?</h3>
+    <p>Ir a navegador y desactivar javascript</p> 
+    <h3>Si te puedes saltar la seguridad de las validaciones de JavaScript, 
+         entonces ¿por qué la primera pregunta dice que es una buena práctica?</h3> 
+    <p> Porque igualmente sirve para tener mas seguridad. Algo es mejor que nada.</p>
+
+    <h4> Bibliografia:</h4>
+    <p>https://uniwebsidad.com/libros/javascript/capitulo-7/validacion</p>
+    <p>https://openai.com/blog/chatgpt</p>
+    <p>https://developer.mozilla.org/es/docs/Learn/Forms/Form_validation</p>
+    <p>https://blog.hubspot.es/website/como-validar-formulario-javascript#:~:text=En%20el%20manejo%20de%20formularios,el%20llenado%20de%20los%20datos.</p>
+</body>
+</html>
