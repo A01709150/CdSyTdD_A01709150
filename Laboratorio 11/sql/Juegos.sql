@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 16, 2023 at 07:18 PM
+-- Generation Time: Mar 21, 2023 at 04:21 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -58,6 +58,14 @@ CREATE TABLE `privilegios` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
+--
+-- Dumping data for table `privilegios`
+--
+
+INSERT INTO `privilegios` (`id`, `nombre`, `created_at`) VALUES
+(1, 'ver_juegos', '2023-03-16 22:18:13'),
+(2, 'crear_juegos', '2023-03-16 22:18:13');
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +79,14 @@ CREATE TABLE `roles` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `created_at`) VALUES
+(1, 'adimn', 'agrega juegos', '2023-03-16 22:21:48'),
+(2, 'influencer', 'ver juegos', '2023-03-16 22:21:48');
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +98,14 @@ CREATE TABLE `rol_privilegios` (
   `idPrivilegio` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `rol_privilegios`
+--
+
+INSERT INTO `rol_privilegios` (`idRol`, `idPrivilegio`, `created_at`) VALUES
+(1, 1, '2023-03-16 22:27:04'),
+(1, 2, '2023-03-16 22:27:04');
 
 -- --------------------------------------------------------
 
@@ -102,7 +126,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `username`, `password`, `created_at`) VALUES
-(1, 'Diego ', 'doppio19', '$2a$12$Fg6k5Yce.ScHj4u9SWypceS5dcLe6IuJ2YvRCqit8ah9w09tMSMUi', '2023-03-16 16:52:49');
+(1, 'Diego ', 'doppio19', '$2a$12$Fg6k5Yce.ScHj4u9SWypceS5dcLe6IuJ2YvRCqit8ah9w09tMSMUi', '2023-03-16 16:52:49'),
+(2, 'chava', 'chava', '$2a$12$wq9xClMLbiCvzISRTX/2suUzj4a0hFSkz7DgpUafGqoj2159d.Fsu', '2023-03-16 22:42:20');
 
 -- --------------------------------------------------------
 
@@ -115,6 +140,13 @@ CREATE TABLE `usuario_rol` (
   `idRol` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `usuario_rol`
+--
+
+INSERT INTO `usuario_rol` (`idUsuario`, `idRol`, `created_at`) VALUES
+(1, 1, '2023-03-16 22:25:16');
 
 --
 -- Indexes for dumped tables
@@ -175,19 +207,19 @@ ALTER TABLE `Juegos`
 -- AUTO_INCREMENT for table `privilegios`
 --
 ALTER TABLE `privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
